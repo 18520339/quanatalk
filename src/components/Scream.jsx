@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -31,6 +33,7 @@ function Scream(props) {
         likeCount,
         commentCount,
     } = scream;
+    dayjs.extend(relativeTime);
 
     return (
         <Card className={classes.card}>
@@ -49,12 +52,11 @@ function Scream(props) {
                     {userHandle}
                 </Typography>
                 <Typography variant='body2' color='textSecondary'>
-                    {createdAt}
+                    {dayjs(createdAt).fromNow()}
                 </Typography>
                 <Typography variant='body1'>{body}</Typography>
             </CardContent>
         </Card>
     );
 }
-
 export default withStyles(styles)(Scream);

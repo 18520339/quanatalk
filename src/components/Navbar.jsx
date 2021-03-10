@@ -1,11 +1,17 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-export default function Navbar() {
+const styles = {
+    authBtns: { marginLeft: 'auto' },
+};
+
+function Navbar(props) {
+    const { classes } = props;
     return (
         <Fragment>
             <AppBar>
@@ -13,14 +19,17 @@ export default function Navbar() {
                     <Button color='inherit' component={Link} to='/'>
                         Home
                     </Button>
-                    <Button color='inherit' component={Link} to='/signup'>
-                        SignUp
-                    </Button>
-                    <Button color='inherit' component={Link} to='/login'>
-                        Login
-                    </Button>
+                    <div className={classes.authBtns}>
+                        <Button color='inherit' component={Link} to='/login'>
+                            Login
+                        </Button>
+                        <Button color='inherit' component={Link} to='/signup'>
+                            SignUp
+                        </Button>
+                    </div>
                 </Toolbar>
             </AppBar>
         </Fragment>
     );
 }
+export default withStyles(styles)(Navbar);
