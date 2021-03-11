@@ -1,29 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles/';
+import jwtDecode from 'jwt-decode';
 
-import { Home, Login, SignUp } from './pages';
+import { Home, SignIn, SignUp } from './pages';
 import Navbar from './components/Navbar';
-import './App.css';
+import AuthRoute from './components/AuthRoute';
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: '#33c9dc',
-            main: '#2196f3',
-            dark: '#008394',
-            contrastText: '#fff',
-        },
-        secondary: {
-            light: '#ff6333',
-            main: '#ff3d00',
-            dark: '#b22a00',
-            contrastText: '#fff',
-        },
-    },
-});
+import palette from './styles/palette';
+import './styles/App.css';
 
+const theme = createMuiTheme(palette);
 export default function App() {
+    let authenticated = false;
+    if (localStorage.QntToken) {
+        const decodedToken = jwtDecode(localStorage.QntToken);
+        if (decodedToken.exp * 1000 > Date.now()) authenticated = true;
+        else window.location.href = '/signin';
+    }
     return (
         <ThemeProvider theme={theme}>
             <BrowserRouter>
@@ -31,8 +25,18 @@ export default function App() {
                 <div className='container'>
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <Route exact path='/login' component={Login} />
-                        <Route exact path='/signup' component={SignUp} />
+                        <AuthRoute
+                            exact
+                            path='/signin'
+                            component={SignIn}
+                            authenticated={authenticated}
+                        />
+                        <AuthRoute
+                            exact
+                            path='/signup'
+                            component={SignUp}
+                            authenticated={authenticated}
+                        />
                     </Switch>
                 </div>
             </BrowserRouter>

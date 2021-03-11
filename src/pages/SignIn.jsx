@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import AppLogo from '../images/logo.png';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -10,39 +9,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const styles = {
-    form: {
-        textAlign: 'center',
-    },
-    logo: {
-        animation: '$logoSpin infinite 20s linear',
-        margin: '10px auto',
-    },
-    loginTitle: {
-        margin: '10px auto',
-    },
-    textField: {
-        margin: '10px auto',
-    },
-    button: {
-        position: 'relative',
-        marginTop: 20,
-    },
-    progress: {
-        position: 'absolute',
-    },
-    customError: {
-        color: 'red',
-        fontSize: '0.8rem',
-        marginTop: 10,
-    },
-    '@keyframes logoSpin ': {
-        from: { transform: 'rotate(0deg)' },
-        to: { transform: 'rotate(360deg)' },
-    },
-};
+import styles from '../styles/authForm';
+import AppLogo from '../images/logo.png';
 
-function Login(props) {
+function SignIn(props) {
     const { classes } = props;
     const [credential, setCredential] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
@@ -56,8 +26,9 @@ function Login(props) {
         event.preventDefault();
         setLoading(true);
         axios
-            .post('/user/login', credential)
+            .post('/user/signin', credential)
             .then(res => {
+                localStorage.setItem('QntToken', `Bearer ${res.data.token}`);
                 setLoading(false);
                 props.history.push('/');
             })
@@ -77,8 +48,8 @@ function Login(props) {
                     src={AppLogo}
                     alt='logo'
                 />
-                <Typography variant='h2' className={classes.loginTitle}>
-                    Login
+                <Typography variant='h2' className={classes.title}>
+                    Sign in
                 </Typography>
                 <form noValidate onSubmit={onSubmit}>
                     <TextField
@@ -120,7 +91,7 @@ function Login(props) {
                         className={classes.button}
                         disabled={loading}
                     >
-                        Login
+                        Sign in
                         {loading && (
                             <CircularProgress
                                 className={classes.progress}
@@ -132,7 +103,7 @@ function Login(props) {
                     <br />
                     <small>
                         Don't have an account ?
-                        <Link to='/user/signup'> Sign up</Link>
+                        <Link to='/signup'> Sign up</Link>
                     </small>
                 </form>
             </Grid>
@@ -140,4 +111,4 @@ function Login(props) {
         </Grid>
     );
 }
-export default withStyles(styles)(Login);
+export default withStyles(styles)(SignIn);

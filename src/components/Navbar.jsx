@@ -20,11 +20,11 @@ function Navbar(props) {
                         Home
                     </Button>
                     <div className={classes.authBtns}>
-                        <Button color='inherit' component={Link} to='/login'>
-                            Login
+                        <Button color='inherit' component={Link} to='/signin'>
+                            Sign in
                         </Button>
                         <Button color='inherit' component={Link} to='/signup'>
-                            SignUp
+                            Sign up
                         </Button>
                     </div>
                 </Toolbar>
