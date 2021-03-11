@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-
 import Scream from '../components/Scream';
 
 export default function Home() {
