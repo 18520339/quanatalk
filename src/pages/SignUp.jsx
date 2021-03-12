@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
+// Material UI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +9,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signUpUser } from '../redux/actions/user.actions';
+
+// Styles
 import styles from '../styles/authForm';
 import AppLogo from '../images/logo.png';
 
@@ -20,8 +25,9 @@ function SignUp(props) {
         confirm: '',
         handle: '',
     });
-    const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState({});
+
+    const { loading, errors } = useSelector(state => state.UI);
+    const dispatch = useDispatch();
 
     const onChange = event => {
         const { name, value } = event.target;
@@ -29,19 +35,7 @@ function SignUp(props) {
     };
     const onSubmit = event => {
         event.preventDefault();
-        setLoading(true);
-        axios
-            .post('/user/signup', authData)
-            .then(res => {
-                localStorage.setItem('QntToken', `Bearer ${res.data.token}`);
-                setLoading(false);
-                history.push('/');
-            })
-            .catch(err => {
-                console.log(err.response.data);
-                setErrors(err.response.data);
-                setLoading(false);
-            });
+        dispatch(signUpUser(authData, history));
     };
 
     return (

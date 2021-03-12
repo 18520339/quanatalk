@@ -1,18 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-const styles = {
-    authBtns: { marginLeft: 'auto' },
-};
-
-function Navbar(props) {
-    const { classes } = props;
+export default function Navbar() {
     return (
         <Fragment>
             <AppBar>
@@ -20,7 +13,7 @@ function Navbar(props) {
                     <Button color='inherit' component={Link} to='/'>
                         Home
                     </Button>
-                    <div className={classes.authBtns}>
+                    <div style={{ marginLeft: 'auto' }}>
                         <Button color='inherit' component={Link} to='/signin'>
                             Sign in
                         </Button>
@@ -33,7 +26,3 @@ function Navbar(props) {
         </Fragment>
     );
 }
-Navbar.propTypes = {
-    authenticated: PropTypes.bool.isRequired,
-};
-export default withStyles(styles)(Navbar);

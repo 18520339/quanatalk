@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Material UI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -12,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { signInUser } from '../redux/actions/user.action';
+import { signInUser } from '../redux/actions/user.actions';
 
 // Styles
 import styles from '../styles/authForm';
@@ -34,7 +33,6 @@ function SignIn(props) {
         dispatch(signInUser(authData, history));
     };
 
-    useEffect(() => {}, [loading, errors]);
     return (
         <Grid container className={classes.form}>
             <Grid item sm></Grid>
@@ -108,9 +106,4 @@ function SignIn(props) {
         </Grid>
     );
 }
-SignIn.propTypes = {
-    classes: PropTypes.object.isRequired,
-    signInUser: PropTypes.func.isRequired,
-    UI: PropTypes.object.isRequired,
-};
 export default withStyles(styles)(SignIn);
