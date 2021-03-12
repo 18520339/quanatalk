@@ -1,14 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles/';
 import jwtDecode from 'jwt-decode';
 
-import { Home, SignIn, SignUp } from './pages';
-import Navbar from './components/Navbar';
-import AuthRoute from './components/AuthRoute';
+// Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
+// Theme
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles/';
 import palette from './styles/palette';
 import './styles/App.css';
+
+// Pages
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+
+// Components
+import Navbar from './components/Navbar';
+import AuthRoute from './components/AuthRoute';
 
 const theme = createMuiTheme(palette);
 export default function App() {
@@ -16,30 +26,35 @@ export default function App() {
     if (localStorage.QntToken) {
         const decodedToken = jwtDecode(localStorage.QntToken);
         if (decodedToken.exp * 1000 > Date.now()) authenticated = true;
-        else window.location.href = '/signin';
+        else {
+            localStorage.removeItem('QntToken');
+            window.location.href = '/signin';
+        }
     }
     return (
         <ThemeProvider theme={theme}>
-            <BrowserRouter>
-                <Navbar />
-                <div className='container'>
-                    <Switch>
-                        <Route exact path='/' component={Home} />
-                        <AuthRoute
-                            exact
-                            path='/signin'
-                            component={SignIn}
-                            authenticated={authenticated}
-                        />
-                        <AuthRoute
-                            exact
-                            path='/signup'
-                            component={SignUp}
-                            authenticated={authenticated}
-                        />
-                    </Switch>
-                </div>
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Navbar />
+                    <div className='container'>
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <AuthRoute
+                                exact
+                                path='/signin'
+                                component={SignIn}
+                                authenticated={authenticated}
+                            />
+                            <AuthRoute
+                                exact
+                                path='/signup'
+                                component={SignUp}
+                                authenticated={authenticated}
+                            />
+                        </Switch>
+                    </div>
+                </BrowserRouter>
+            </Provider>
         </ThemeProvider>
     );
 }

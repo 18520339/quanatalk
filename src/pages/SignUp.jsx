@@ -13,8 +13,8 @@ import styles from '../styles/authForm';
 import AppLogo from '../images/logo.png';
 
 function SignUp(props) {
-    const { classes } = props;
-    const [credential, setCredential] = useState({
+    const { classes, history } = props;
+    const [authData, setAuthData] = useState({
         email: '',
         password: '',
         confirm: '',
@@ -25,17 +25,17 @@ function SignUp(props) {
 
     const onChange = event => {
         const { name, value } = event.target;
-        setCredential({ ...credential, [name]: value });
+        setAuthData({ ...authData, [name]: value });
     };
     const onSubmit = event => {
         event.preventDefault();
         setLoading(true);
         axios
-            .post('/user/signup', credential)
+            .post('/user/signup', authData)
             .then(res => {
                 localStorage.setItem('QntToken', `Bearer ${res.data.token}`);
                 setLoading(false);
-                props.history.push('/');
+                history.push('/');
             })
             .catch(err => {
                 console.log(err.response.data);
@@ -66,7 +66,7 @@ function SignUp(props) {
                         className={classes.textField}
                         helperText={errors.email}
                         error={errors.email ? true : false}
-                        value={credential.email}
+                        value={authData.email}
                         onChange={onChange}
                         fullWidth
                     />
@@ -78,7 +78,7 @@ function SignUp(props) {
                         className={classes.textField}
                         helperText={errors.password}
                         error={errors.password ? true : false}
-                        value={credential.password}
+                        value={authData.password}
                         onChange={onChange}
                         fullWidth
                     />
@@ -90,7 +90,7 @@ function SignUp(props) {
                         className={classes.textField}
                         helperText={errors.confirm}
                         error={errors.confirm ? true : false}
-                        value={credential.confirm}
+                        value={authData.confirm}
                         onChange={onChange}
                         fullWidth
                     />
@@ -102,7 +102,7 @@ function SignUp(props) {
                         className={classes.textField}
                         helperText={errors.handle}
                         error={errors.handle ? true : false}
-                        value={credential.handle}
+                        value={authData.handle}
                         onChange={onChange}
                         fullWidth
                     />

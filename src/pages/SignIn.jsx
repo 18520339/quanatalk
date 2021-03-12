@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
+// Material UI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,35 +10,31 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signInUser } from '../redux/actions/user.action';
+
+// Styles
 import styles from '../styles/authForm';
 import AppLogo from '../images/logo.png';
 
 function SignIn(props) {
-    const { classes } = props;
-    const [credential, setCredential] = useState({ email: '', password: '' });
-    const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState({});
+    const { classes, history } = props;
+    const [authData, setAuthData] = useState({ email: '', password: '' });
+
+    const { loading, errors } = useSelector(state => state.UI);
+    const dispatch = useDispatch();
 
     const onChange = event => {
         const { name, value } = event.target;
-        setCredential({ ...credential, [name]: value });
+        setAuthData({ ...authData, [name]: value });
     };
     const onSubmit = event => {
         event.preventDefault();
-        setLoading(true);
-        axios
-            .post('/user/signin', credential)
-            .then(res => {
-                localStorage.setItem('QntToken', `Bearer ${res.data.token}`);
-                setLoading(false);
-                props.history.push('/');
-            })
-            .catch(err => {
-                setErrors(err.response.data);
-                setLoading(false);
-            });
+        dispatch(signInUser(authData, history));
     };
 
+    useEffect(() => {}, [loading, errors]);
     return (
         <Grid container className={classes.form}>
             <Grid item sm></Grid>
@@ -60,7 +57,7 @@ function SignIn(props) {
                         className={classes.textField}
                         helperText={errors.email}
                         error={errors.email ? true : false}
-                        value={credential.email}
+                        value={authData.email}
                         onChange={onChange}
                         fullWidth
                     />
@@ -72,7 +69,7 @@ function SignIn(props) {
                         className={classes.textField}
                         helperText={errors.password}
                         error={errors.password ? true : false}
-                        value={credential.password}
+                        value={authData.password}
                         onChange={onChange}
                         fullWidth
                     />
@@ -111,4 +108,9 @@ function SignIn(props) {
         </Grid>
     );
 }
+SignIn.propTypes = {
+    classes: PropTypes.object.isRequired,
+    signInUser: PropTypes.func.isRequired,
+    UI: PropTypes.object.isRequired,
+};
 export default withStyles(styles)(SignIn);

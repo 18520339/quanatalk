@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
@@ -32,4 +33,7 @@ function Navbar(props) {
         </Fragment>
     );
 }
+Navbar.propTypes = {
+    authenticated: PropTypes.bool.isRequired,
+};
 export default withStyles(styles)(Navbar);

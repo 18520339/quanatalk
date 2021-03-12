@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -59,4 +60,8 @@ function Scream(props) {
         </Card>
     );
 }
+Scream.propTypes = {
+    classes: PropTypes.object.isRequired,
+    scream: PropTypes.object.isRequired,
+};
 export default withStyles(styles)(Scream);
