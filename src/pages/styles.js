@@ -1,4 +1,4 @@
-const authForm = {
+const styles = {
     form: {
         textAlign: 'center',
     },
@@ -29,4 +29,4 @@ const authForm = {
         to: { transform: 'rotate(360deg)' },
     },
 };
-export default authForm;
+export default styles;

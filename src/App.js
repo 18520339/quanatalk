@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import './styles/App.css';
+import './App.css';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
 // Components
-import Navbar from './components/Navbar';
+import NavBar from './components/NavBar';
 import AuthRoute from './components/AuthRoute';
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
     }
     return (
         <BrowserRouter>
-            <Navbar />
+            <NavBar />
             <div className='container'>
                 <Switch>
                     <Route exact path='/' component={Home} />

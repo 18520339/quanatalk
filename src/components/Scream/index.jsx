@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -10,19 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import { Typography } from '@material-ui/core';
 
-const styles = {
-    card: {
-        display: 'flex',
-        marginBottom: 20,
-    },
-    image: {
-        minWidth: 200,
-        objectFit: 'cover',
-    },
-    content: {
-        padding: 25,
-    },
-};
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import styles from './styles';
 
 function Scream(props) {
     const { classes, scream } = props;

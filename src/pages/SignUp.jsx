@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signUpUser } from '../redux/actions/user.actions';
 
 // Styles
-import styles from '../styles/authForm';
+import styles from './styles';
 import AppLogo from '../images/logo.png';
 
 function SignUp(props) {

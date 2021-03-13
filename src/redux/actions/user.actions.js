@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
     SET_UNAUTHENTICATED,
     SET_USER,
+    LOADING_USER,
     SET_ERRORS,
     CLEAR_ERRORS,
     LOADING_UI,
@@ -44,6 +45,7 @@ export const signOutUser = () => (dispatch, getState) => {
 };
 
 export const getMe = () => (dispatch, getState) => {
+    dispatch({ type: LOADING_USER });
     axios
         .get('/user/me')
         .then(res => dispatch({ type: SET_USER, payload: res.data }))
