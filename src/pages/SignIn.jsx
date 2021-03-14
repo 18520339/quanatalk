@@ -17,10 +17,8 @@ import { signInUser } from '../redux/actions/user.actions';
 import styles from './styles';
 import AppLogo from '../images/logo.png';
 
-function SignIn(props) {
-    const { classes, history } = props;
+function SignIn({ classes, history }) {
     const [authData, setAuthData] = useState({ email: '', password: '' });
-
     const { loading, errors } = useSelector(state => state.UI);
     const dispatch = useDispatch();
 

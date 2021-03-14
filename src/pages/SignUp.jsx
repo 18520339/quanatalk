@@ -17,15 +17,13 @@ import { signUpUser } from '../redux/actions/user.actions';
 import styles from './styles';
 import AppLogo from '../images/logo.png';
 
-function SignUp(props) {
-    const { classes, history } = props;
+function SignUp({ classes, history }) {
     const [authData, setAuthData] = useState({
         email: '',
         password: '',
         confirm: '',
         handle: '',
     });
-
     const { loading, errors } = useSelector(state => state.UI);
     const dispatch = useDispatch();
 

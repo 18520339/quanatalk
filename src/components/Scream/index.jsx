@@ -12,8 +12,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import styles from './styles';
 
-function Scream(props) {
-    const { classes, scream } = props;
+function Scream({ classes, scream }) {
     const {
         body,
         userAvatar,

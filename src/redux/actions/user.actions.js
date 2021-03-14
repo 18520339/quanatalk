@@ -8,6 +8,12 @@ import {
     LOADING_UI,
 } from '../constants';
 
+const setAuthorizationHeader = token => {
+    const qntToken = `Bearer ${token}`;
+    localStorage.setItem('QntToken', qntToken);
+    axios.defaults.headers.common['Authorization'] = qntToken;
+};
+
 export const signUpUser = (authData, history) => (dispatch, getState) => {
     dispatch({ type: LOADING_UI });
     axios
@@ -52,8 +58,10 @@ export const getMe = () => (dispatch, getState) => {
         .catch(console.error);
 };
 
-const setAuthorizationHeader = token => {
-    const qntToken = `Bearer ${token}`;
-    localStorage.setItem('QntToken', qntToken);
-    axios.defaults.headers.common['Authorization'] = qntToken;
+export const uploadAvatar = formData => (dispatch, getState) => {
+    dispatch({ type: LOADING_USER });
+    axios
+        .post('/user/avatar', formData)
+        .then(() => dispatch(getMe()))
+        .catch(console.error);
 };

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 // Material UI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -8,22 +7,40 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // Material Icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
+import EditIcon from '@material-ui/icons/Edit';
+
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signOutUser, uploadAvatar } from '../../redux/actions/user.actions';
 
 import dayjs from 'dayjs';
 import styles from './styles';
 
-function Profile(props) {
-    const { classes } = props;
+function Profile({ classes }) {
     const {
         authenticated,
         credentials: { avatarUrl, bio, website, location, createdAt, handle },
         loading,
     } = useSelector(state => state.user);
+
+    const dispatch = useDispatch();
+    const onAvatarChange = event => {
+        const image = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', image, image.name);
+        dispatch(uploadAvatar(formData));
+    };
+    const onChooseImage = () => {
+        const fileInput = document.getElementById('avatar-input');
+        fileInput.click();
+    };
 
     if (loading) return <p>Loading...</p>;
     return authenticated ? (
@@ -35,6 +52,17 @@ function Profile(props) {
                         src={avatarUrl}
                         alt='Profile image'
                     />
+                    <input
+                        id='avatar-input'
+                        type='file'
+                        hidden='hidden'
+                        onChange={onAvatarChange}
+                    />
+                    <Tooltip title='Change your avatar' placement='top'>
+                        <IconButton className='button' onClick={onChooseImage}>
+                            <EditIcon color='primary' />
+                        </IconButton>
+                    </Tooltip>
                 </div>
                 <hr />
                 <div className='profile-details'>
