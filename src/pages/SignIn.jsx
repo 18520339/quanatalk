@@ -4,6 +4,7 @@ import AppLogo from '../images/logo.png';
 import styles from './styles';
 
 // Material UI
+import withStyles from '@material-ui/core/styles/withStyles';
 import {
     Grid,
     Typography,
@@ -11,7 +12,6 @@ import {
     Button,
     CircularProgress,
 } from '@material-ui/core';
-import withStyles from '@material-ui/core/styles/withStyles';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';

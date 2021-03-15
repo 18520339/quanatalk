@@ -1,13 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { editUserInfos } from '../../redux/actions/user.actions';
+import TipButton from '../Shared/TipButton';
 
 // Material UI
 import {
-    Tooltip,
     TextField,
     Button,
-    IconButton,
     Dialog,
     DialogTitle,
     DialogContent,
@@ -28,12 +27,12 @@ export default function EditInfos({ classes }) {
 
     const mapInfosToState = () => {
         const { bio, website, location } = credentials;
-        setUserInfos({
+        setUserInfos(userInfos => ({
             ...userInfos,
             bio: bio ? bio : '',
             website: website ? website : '',
             location: location ? location : '',
-        });
+        }));
     };
     const onChange = event => {
         const { name, value } = event.target;
@@ -48,15 +47,17 @@ export default function EditInfos({ classes }) {
         setOpen(true);
     };
     const onClose = () => setOpen(false);
-    useEffect(() => mapInfosToState(), []);
+    useEffect(mapInfosToState, [credentials]);
 
     return (
         <Fragment>
-            <Tooltip title='Edit infos' placement='top'>
-                <IconButton className={classes.editInfos} onClick={onOpen}>
-                    <EditIcon color='primary' />
-                </IconButton>
-            </Tooltip>
+            <TipButton
+                tip='Edit infos'
+                className={classes.editInfos}
+                onClick={onOpen}
+            >
+                <EditIcon color='primary' />
+            </TipButton>
             <Dialog open={open} onClose={onClose} fullWidth maxWidth='sm'>
                 <DialogTitle>Edit your profile</DialogTitle>
                 <DialogContent>

@@ -4,20 +4,21 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 // Material UI
-import { Typography, Card, CardMedia, CardContent } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { Typography, Card, CardMedia, CardContent } from '@material-ui/core';
 
 // DayJS
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+
 function Scream({ classes, scream }) {
     const {
         body,
         userAvatar,
         userHandle,
         createdAt,
-        likeCount,
-        commentCount,
+        // likeCount,
+        // commentCount,
     } = scream;
     dayjs.extend(relativeTime);
 

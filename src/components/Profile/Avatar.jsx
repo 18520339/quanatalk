@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tooltip, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import TipButton from '../Shared/TipButton';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { uploadAvatar } from '../../redux/actions/user.actions';
@@ -32,11 +32,9 @@ export default function Avatar() {
                 hidden='hidden'
                 onChange={onAvatarChange}
             />
-            <Tooltip title='Change your avatar' placement='top'>
-                <IconButton className='button' onClick={onChooseImage}>
-                    <EditIcon color='primary' />
-                </IconButton>
-            </Tooltip>
+            <TipButton tip='Change your avatar' onClick={onChooseImage}>
+                <EditIcon color='primary' />
+            </TipButton>
         </div>
     );
 }

@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom';
 import styles from './styles';
 
 // Material UI
-import {
-    Paper,
-    Tooltip,
-    Button,
-    IconButton,
-    Typography,
-} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { Paper, Button, Typography } from '@material-ui/core';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 // Redux
@@ -21,6 +15,7 @@ import { signOutUser } from '../../redux/actions/user.actions';
 import Avatar from './Avatar';
 import UserInfos from './UserInfos';
 import EditInfos from './EditInfos';
+import TipButton from '../Shared/TipButton';
 
 function Profile({ classes }) {
     const { authenticated, loading } = useSelector(state => state.user);
@@ -34,11 +29,9 @@ function Profile({ classes }) {
                 <Avatar />
                 <hr />
                 <UserInfos />
-                <Tooltip title='Sign out' placement='top'>
-                    <IconButton onClick={onSignOut}>
-                        <KeyboardReturn color='primary' />
-                    </IconButton>
-                </Tooltip>
+                <TipButton tip='Sign out' onClick={onSignOut}>
+                    <KeyboardReturn color='primary' />
+                </TipButton>
                 <EditInfos classes={classes} />
             </div>
         </Paper>
