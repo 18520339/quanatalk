@@ -1,3 +1,10 @@
+// Scream reducer constants
+export const SET_SCREAMS = 'SET_SCREAMS';
+export const SET_SCREAM_BY_ID = 'SET_SCREAM_BY_ID';
+export const LIKE_SCREAM = 'LIKE_SCREAM';
+export const UNLIKE_SCREAM = 'UNLIKE_SCREAM';
+export const LOADING_SCREAMS = 'LOADING_SCREAMS';
+
 // User reducer constants
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';

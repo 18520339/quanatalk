@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 
+// Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { CLEAR_ERRORS } from '../../redux/constants';
 

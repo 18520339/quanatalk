@@ -1,10 +1,6 @@
 import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI } from '../constants';
 
-const initialState = {
-    loading: false,
-    errors: {},
-};
-
+const initialState = { loading: false, errors: {} };
 export default function uiReducer(state = initialState, action) {
     switch (action.type) {
         case SET_ERRORS:

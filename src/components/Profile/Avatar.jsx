@@ -2,6 +2,7 @@ import React from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import TipButton from '../Shared/TipButton';
 
+// Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { uploadAvatar } from '../../redux/actions/user.actions';
 

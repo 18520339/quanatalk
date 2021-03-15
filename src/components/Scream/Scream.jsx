@@ -1,24 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styles from './styles';
 
 // Material UI
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Typography, Card, CardMedia, CardContent } from '@material-ui/core';
+import ChatIcon from '@material-ui/icons/Chat';
 
 // DayJS
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+// Components
+import LikeButton from './LikeButton';
+import TipButton from '../Shared/TipButton';
+
 function Scream({ classes, scream }) {
     const {
+        screamId,
         body,
         userAvatar,
         userHandle,
         createdAt,
-        // likeCount,
-        // commentCount,
+        likeCount,
+        commentCount,
     } = scream;
     dayjs.extend(relativeTime);
 
@@ -42,12 +47,14 @@ function Scream({ classes, scream }) {
                     {dayjs(createdAt).fromNow()}
                 </Typography>
                 <Typography variant='body1'>{body}</Typography>
+                <LikeButton screamId={screamId} />
+                <span>{likeCount} Likes</span>
+                <TipButton tip='Comments'>
+                    <ChatIcon color='primary' />
+                </TipButton>
+                <span>{commentCount} Comments</span>
             </CardContent>
         </Card>
     );
 }
-Scream.propTypes = {
-    classes: PropTypes.object.isRequired,
-    scream: PropTypes.object.isRequired,
-};
 export default withStyles(styles)(Scream);
