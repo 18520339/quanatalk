@@ -28,7 +28,7 @@ function Scream({ classes, scream }) {
             <CardMedia
                 className={classes.image}
                 image={userAvatar}
-                title='Profile image'
+                title='Profile avatar'
             />
             <CardContent className={classes.content}>
                 <Typography

@@ -19,7 +19,7 @@ const styles = theme => ({
             maxWidth: '100%',
             borderRadius: '50%',
         },
-        '& .profile-details': {
+        '& .profile-infos': {
             textAlign: 'center',
             '& span, svg': {
                 verticalAlign: 'middle',

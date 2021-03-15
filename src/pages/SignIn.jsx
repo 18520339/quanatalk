@@ -18,9 +18,9 @@ import styles from './styles';
 import AppLogo from '../images/logo.png';
 
 function SignIn({ classes, history }) {
-    const [authData, setAuthData] = useState({ email: '', password: '' });
     const { loading, errors } = useSelector(state => state.UI);
     const dispatch = useDispatch();
+    const [authData, setAuthData] = useState({ email: '', password: '' });
 
     const onChange = event => {
         const { name, value } = event.target;

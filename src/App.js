@@ -9,14 +9,9 @@ import { useDispatch } from 'react-redux';
 import { signOutUser, getMe } from './redux/actions/user.actions';
 import { SET_AUTHENTICATED } from './redux/constants';
 
-// Pages
-import Home from './pages/Home';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-
 // Components
-import NavBar from './components/NavBar';
-import AuthRoute from './components/AuthRoute';
+import { Home, SignIn, SignUp } from './pages';
+import { NavBar, AuthRoute } from './components';
 
 export default function App() {
     const dispatch = useDispatch();

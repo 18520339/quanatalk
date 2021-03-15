@@ -18,14 +18,14 @@ import styles from './styles';
 import AppLogo from '../images/logo.png';
 
 function SignUp({ classes, history }) {
+    const { loading, errors } = useSelector(state => state.UI);
+    const dispatch = useDispatch();
     const [authData, setAuthData] = useState({
         email: '',
         password: '',
         confirm: '',
         handle: '',
     });
-    const { loading, errors } = useSelector(state => state.UI);
-    const dispatch = useDispatch();
 
     const onChange = event => {
         const { name, value } = event.target;

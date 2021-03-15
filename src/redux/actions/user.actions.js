@@ -65,3 +65,11 @@ export const uploadAvatar = formData => (dispatch, getState) => {
         .then(() => dispatch(getMe()))
         .catch(console.error);
 };
+
+export const editUserInfos = userInfos => (dispatch, getState) => {
+    dispatch({ type: LOADING_USER });
+    axios
+        .post('/user', userInfos)
+        .then(() => dispatch(getMe()))
+        .catch(console.error);
+};
