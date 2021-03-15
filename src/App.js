@@ -20,7 +20,6 @@ export default function App() {
     if (token) {
         const decodedToken = jwtDecode(token);
         if (decodedToken.exp * 1000 < Date.now()) {
-            // localStorage.removeItem('QntToken');
             dispatch(signOutUser());
             window.location.href = '/signin';
         } else {

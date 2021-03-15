@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AppLogo from '../images/logo.png';
+import styles from './styles';
 
 // Material UI
+import {
+    Grid,
+    Typography,
+    TextField,
+    Button,
+    CircularProgress,
+} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { signInUser } from '../redux/actions/user.actions';
-
-// Styles
-import styles from './styles';
-import AppLogo from '../images/logo.png';
 
 function SignIn({ classes, history }) {
     const { loading, errors } = useSelector(state => state.UI);

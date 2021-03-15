@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import styles from './styles';
 
 // Material UI
+import {
+    Paper,
+    Tooltip,
+    Button,
+    IconButton,
+    Typography,
+} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 // Redux
@@ -23,7 +25,7 @@ import EditInfos from './EditInfos';
 function Profile({ classes }) {
     const { authenticated, loading } = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const onSignOut = () => dispatch(signOutUser);
+    const onSignOut = () => dispatch(signOutUser());
 
     if (loading) return <p>Loading...</p>;
     return authenticated ? (
@@ -37,7 +39,7 @@ function Profile({ classes }) {
                         <KeyboardReturn color='primary' />
                     </IconButton>
                 </Tooltip>
-                <EditInfos />
+                <EditInfos classes={classes} />
             </div>
         </Paper>
     ) : (

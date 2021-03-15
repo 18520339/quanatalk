@@ -2,6 +2,12 @@ const styles = theme => ({
     paper: {
         padding: 20,
     },
+    textField: {
+        margin: '10px auto',
+    },
+    editInfos: {
+        float: 'right',
+    },
     profile: {
         '& .image-wrapper': {
             textAlign: 'center',

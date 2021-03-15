@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-import MuiLink from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import LocationOn from '@material-ui/icons/LocationOn';
-import LinkIcon from '@material-ui/icons/Link';
-import CalendarToday from '@material-ui/icons/CalendarToday';
+// Material UI
+import { Link as MuiLink, Typography } from '@material-ui/core';
+import {
+    LocationOn,
+    Link as LinkIcon,
+    CalendarToday,
+} from '@material-ui/icons';
 
 export default function UserInfos() {
     const { bio, website, location, createdAt, handle } = useSelector(
