@@ -2,6 +2,7 @@ import {
     SET_SCREAMS,
     LIKE_SCREAM,
     UNLIKE_SCREAM,
+    DELETE_SCREAM,
     LOADING_SCREAMS,
 } from '../constants';
 
@@ -17,6 +18,12 @@ export default function screamReducer(state = initialState, action) {
             return { ...state };
         case SET_SCREAMS:
             return { ...state, allScreams: action.payload, loading: false };
+        case DELETE_SCREAM:
+            const deletedIndex = state.allScreams.findIndex(
+                scream => scream.screamId === action.payload
+            );
+            state.allScreams.splice(deletedIndex, 1);
+            return { ...state };
         case LOADING_SCREAMS:
             return { ...state, loading: true };
         default:

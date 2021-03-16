@@ -3,6 +3,7 @@ import {
     SET_SCREAMS,
     LIKE_SCREAM,
     UNLIKE_SCREAM,
+    DELETE_SCREAM,
     LOADING_SCREAMS,
 } from '../constants';
 
@@ -25,5 +26,12 @@ export const unlikeScream = screamId => (dispatch, getState) => {
     axios
         .get(`/scream/${screamId}/unlike`)
         .then(res => dispatch({ type: UNLIKE_SCREAM, payload: res.data }))
+        .catch(console.error);
+};
+
+export const deleteScream = screamId => (dispatch, getState) => {
+    axios
+        .delete(`/scream/${screamId}`)
+        .then(() => dispatch({ type: DELETE_SCREAM, payload: screamId }))
         .catch(console.error);
 };

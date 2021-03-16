@@ -13,6 +13,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Components
 import LikeButton from './LikeButton';
+import DeleteButton from './DeleteButton';
 import TipButton from '../Shared/TipButton';
 
 function Scream({ classes, scream }) {
@@ -43,6 +44,11 @@ function Scream({ classes, scream }) {
                 >
                     {userHandle}
                 </Typography>
+                <DeleteButton
+                    classes={classes}
+                    screamId={screamId}
+                    userHandle={userHandle}
+                />
                 <Typography variant='body2' color='textSecondary'>
                     {dayjs(createdAt).fromNow()}
                 </Typography>

@@ -10,6 +10,10 @@ import { likeScream, unlikeScream } from '../../redux/actions/scream.actions';
 export default function LikeButton({ screamId }) {
     const { authenticated, likes } = useSelector(state => state.user);
     const dispatch = useDispatch();
+
+    const onLike = () => dispatch(likeScream(screamId));
+    const onUnlike = () => dispatch(unlikeScream(screamId));
+
     if (!authenticated)
         return (
             <Link to='/signin'>
@@ -19,14 +23,11 @@ export default function LikeButton({ screamId }) {
             </Link>
         );
     return likes && likes.find(like => like.screamId === screamId) ? (
-        <TipButton
-            tip='Unlike'
-            onClick={() => dispatch(unlikeScream(screamId))}
-        >
+        <TipButton tip='Unlike' onClick={onUnlike}>
             <FavoriteIcon color='primary' />
         </TipButton>
     ) : (
-        <TipButton tip='Like' onClick={() => dispatch(likeScream(screamId))}>
+        <TipButton tip='Like' onClick={onLike}>
             <FavoriteBorder color='primary' />
         </TipButton>
     );
