@@ -14,9 +14,9 @@ export default function DeleteButton({ classes, screamId, userHandle }) {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
-    const onDeleteScream = () => dispatch(deleteScream(screamId));
     const onOpen = () => setOpen(true);
     const onClose = () => setOpen(false);
+    const onDeleteScream = () => dispatch(deleteScream(screamId));
 
     return (
         authenticated &&

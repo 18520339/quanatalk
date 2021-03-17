@@ -1,10 +1,14 @@
 import axios from 'axios';
 import {
     SET_SCREAMS,
+    POST_SCREAM,
     LIKE_SCREAM,
     UNLIKE_SCREAM,
     DELETE_SCREAM,
     LOADING_SCREAMS,
+    SET_ERRORS,
+    CLEAR_ERRORS,
+    LOADING_UI,
 } from '../constants';
 
 export const getScreams = () => (dispatch, getState) => {
@@ -13,6 +17,19 @@ export const getScreams = () => (dispatch, getState) => {
         .get('/screams')
         .then(res => dispatch({ type: SET_SCREAMS, payload: res.data }))
         .catch(err => dispatch({ type: SET_SCREAMS, payload: [] }));
+};
+
+export const postScream = newScream => (dispatch, getState) => {
+    dispatch({ type: LOADING_UI });
+    axios
+        .post('/scream', newScream)
+        .then(res => {
+            dispatch({ type: POST_SCREAM, payload: res.data });
+            dispatch({ type: CLEAR_ERRORS });
+        })
+        .catch(err => {
+            dispatch({ type: SET_ERRORS, payload: err.response.data });
+        });
 };
 
 export const likeScream = screamId => (dispatch, getState) => {

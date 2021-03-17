@@ -1,5 +1,6 @@
 import {
     SET_SCREAMS,
+    POST_SCREAM,
     LIKE_SCREAM,
     UNLIKE_SCREAM,
     DELETE_SCREAM,
@@ -18,6 +19,11 @@ export default function screamReducer(state = initialState, action) {
             return { ...state };
         case SET_SCREAMS:
             return { ...state, allScreams: action.payload, loading: false };
+        case POST_SCREAM:
+            return {
+                ...state,
+                allScreams: [action.payload, ...state.allScreams],
+            };
         case DELETE_SCREAM:
             const deletedIndex = state.allScreams.findIndex(
                 scream => scream.screamId === action.payload

@@ -1,6 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { editUserInfos } from '../../redux/actions/user.actions';
 import TipButton from '../Shared/TipButton';
 
 // Material UI
@@ -13,6 +11,10 @@ import {
     DialogActions,
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { editUserInfos } from '../../redux/actions/user.actions';
 
 export default function EditInfos({ classes }) {
     const { credentials } = useSelector(state => state.user);

@@ -1,16 +1,14 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import TipButton from '../Shared/TipButton';
 import styles from './styles';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
-import {
-    Add as AddIcon,
-    Home as HomeIcon,
-    Notifications,
-} from '@material-ui/icons';
+import { Home as HomeIcon, Notifications } from '@material-ui/icons';
+
+import PostButton from './PostButton';
+import TipButton from '../Shared/TipButton';
 
 function NavBar({ classes }) {
     const { authenticated } = useSelector(state => state.user);
@@ -19,9 +17,7 @@ function NavBar({ classes }) {
             <Toolbar className={classes.navContainer}>
                 {authenticated ? (
                     <Fragment>
-                        <TipButton tip='Post a Scream!'>
-                            <AddIcon />
-                        </TipButton>
+                        <PostButton classes={classes} />
                         <Link to='/'>
                             <TipButton tip='Home'>
                                 <HomeIcon />
