@@ -24,11 +24,24 @@ const styles = {
         borderRadius: '50%',
         objectFit: 'cover',
     },
+    commentAvatar: {
+        height: 100,
+        borderRadius: '50%',
+        objectFit: 'cover',
+    },
+    commentData: {
+        marginLeft: 35,
+    },
     spinner: {
         textAlign: 'center',
         margin: '20px auto',
     },
-    invisibleSeperator: {
+    visibleSep: {
+        width: '100%',
+        borderBottom: '1px solid rgb(0, 0, 0, 0.1)',
+        marginBottom: 20,
+    },
+    invisibleSep: {
         border: 'none',
         margin: 4,
     },

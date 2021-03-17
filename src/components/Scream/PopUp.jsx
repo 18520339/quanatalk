@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
@@ -7,7 +7,6 @@ import {
     Grid,
     Typography,
     Dialog,
-    DialogTitle,
     DialogContent,
     CircularProgress,
 } from '@material-ui/core';
@@ -23,6 +22,7 @@ import { getScreamById } from '../../redux/actions/scream.actions';
 
 // Components
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 import TipButton from '../Shared/TipButton';
 
 export default function PopUp({ classes, screamId }) {
@@ -33,6 +33,7 @@ export default function PopUp({ classes, screamId }) {
         createdAt,
         likeCount,
         commentCount,
+        comments,
     } = useSelector(state => state.scream.scream);
     const { loading } = useSelector(state => state.UI);
     const dispatch = useDispatch();
@@ -84,7 +85,7 @@ export default function PopUp({ classes, screamId }) {
                                 >
                                     @{userHandle}
                                 </Typography>
-                                <hr className={classes.invisibleSeperator} />
+                                <hr className={classes.invisibleSep} />
                                 <Typography
                                     variant='body2'
                                     color='textSecondary'
@@ -93,7 +94,7 @@ export default function PopUp({ classes, screamId }) {
                                         'h:mm A, MMMM DD YYYY'
                                     )}
                                 </Typography>
-                                <hr className={classes.invisibleSeperator} />
+                                <hr className={classes.invisibleSep} />
                                 <Typography variant='body1'>{body}</Typography>
                                 <LikeButton screamId={screamId} />
                                 <span>{likeCount} Likes</span>
@@ -102,6 +103,8 @@ export default function PopUp({ classes, screamId }) {
                                 </TipButton>
                                 <span>{commentCount} Comments</span>
                             </Grid>
+                            <hr className={classes.visibleSep} />
+                            <Comments classes={classes} comments={comments} />
                         </Grid>
                     )}
                 </DialogContent>
