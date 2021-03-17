@@ -14,6 +14,9 @@ const styles = {
         borderRadius: '50%',
         objectFit: 'cover',
     },
+    commentForm: {
+        textAlign: 'center',
+    },
     commentAvatar: {
         height: 100,
         borderRadius: '50%',
@@ -35,8 +38,15 @@ const styles = {
         border: 'none',
         margin: 4,
     },
+    textField: {
+        margin: '10px auto',
+    },
     content: {
         padding: 25,
+    },
+    submitButton: {
+        marginTop: 20,
+        position: 'relative',
     },
 };
 export default styles;

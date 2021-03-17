@@ -5,6 +5,7 @@ import {
     LIKE_SCREAM,
     UNLIKE_SCREAM,
     DELETE_SCREAM,
+    SUBMIT_COMMENT,
     LOADING_SCREAMS,
 } from '../constants';
 
@@ -35,6 +36,16 @@ export default function screamReducer(state = initialState, action) {
             );
             state.allScreams.splice(deletedIndex, 1);
             return { ...state };
+        case SUBMIT_COMMENT:
+            if (state.scream.screamId === action.payload.screamId)
+                state.scream.commentCount += 1;
+            return {
+                ...state,
+                scream: {
+                    ...state.scream,
+                    comments: [action.payload, ...state.scream.comments],
+                },
+            };
         case LOADING_SCREAMS:
             return { ...state, loading: true };
         default:

@@ -21,9 +21,11 @@ import {
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getScreamById } from '../../redux/actions/scream.actions';
+import { clearErrors } from '../../redux/actions/ui.actions';
 
 // Components
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 import LikeButton from '../Shared/LikeButton';
 import TipButton from '../Shared/TipButton';
 
@@ -45,7 +47,10 @@ function ScreamDialog({ classes, screamId }) {
         setOpen(true);
         dispatch(getScreamById(screamId));
     };
-    const onClose = () => setOpen(false);
+    const onClose = () => {
+        setOpen(false);
+        dispatch(clearErrors());
+    };
 
     return (
         <Fragment>
@@ -106,6 +111,10 @@ function ScreamDialog({ classes, screamId }) {
                                 <span>{commentCount} Comments</span>
                             </Grid>
                             <hr className={classes.visibleSep} />
+                            <CommentForm
+                                classes={classes}
+                                screamId={screamId}
+                            />
                             <Comments classes={classes} comments={comments} />
                         </Grid>
                     )}
