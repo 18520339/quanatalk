@@ -1,5 +1,6 @@
 import {
     SET_SCREAMS,
+    SET_SCREAM_BY_ID,
     POST_SCREAM,
     LIKE_SCREAM,
     UNLIKE_SCREAM,
@@ -19,6 +20,8 @@ export default function screamReducer(state = initialState, action) {
             return { ...state };
         case SET_SCREAMS:
             return { ...state, allScreams: action.payload, loading: false };
+        case SET_SCREAM_BY_ID:
+            return { ...state, scream: action.payload };
         case POST_SCREAM:
             return {
                 ...state,

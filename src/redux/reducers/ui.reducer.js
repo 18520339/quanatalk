@@ -1,4 +1,9 @@
-import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI } from '../constants';
+import {
+    SET_ERRORS,
+    CLEAR_ERRORS,
+    LOADING_UI,
+    STOP_LOADING_UI,
+} from '../constants';
 
 const initialState = { loading: false, errors: {} };
 export default function uiReducer(state = initialState, action) {
@@ -9,6 +14,8 @@ export default function uiReducer(state = initialState, action) {
             return initialState;
         case LOADING_UI:
             return { ...state, loading: true };
+        case STOP_LOADING_UI:
+            return { ...state, loading: false };
         default:
             return state;
     }

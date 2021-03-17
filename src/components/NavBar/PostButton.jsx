@@ -15,6 +15,7 @@ import { Add as AddIcon, Close as CloseIcon } from '@material-ui/icons';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { postScream } from '../../redux/actions/scream.actions';
+import { clearErrors } from '../../redux/actions/ui.actions';
 
 export default function PostButton({ classes }) {
     const { UI } = useSelector(state => state);
@@ -28,6 +29,7 @@ export default function PostButton({ classes }) {
     const onClose = () => {
         setOpen(false);
         setErrors({});
+        dispatch(clearErrors());
     };
 
     const onChange = event => setBody(event.target.value);
@@ -40,7 +42,8 @@ export default function PostButton({ classes }) {
         if (UI.errors) setErrors(UI.errors);
         if (!UI.loading && Object.keys(UI.errors).length === 0) {
             setBody('');
-            onClose();
+            setOpen(false);
+            setErrors({});
         }
     }, [UI]);
 
