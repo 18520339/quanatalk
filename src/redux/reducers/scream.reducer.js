@@ -17,6 +17,8 @@ export default function screamReducer(state = initialState, action) {
                 scream => scream.screamId === action.payload.screamId
             );
             state.allScreams[index] = action.payload;
+            if (state.scream.screamId === action.payload.screamId)
+                state.scream = action.payload;
             return { ...state };
         case SET_SCREAMS:
             return { ...state, allScreams: action.payload, loading: false };

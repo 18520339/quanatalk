@@ -4,6 +4,10 @@ const styles = {
         display: 'flex',
         marginBottom: 20,
     },
+    expandButton: {
+        position: 'absolute',
+        left: '90%',
+    },
     closeButton: {
         position: 'absolute',
         left: '90%',
@@ -19,6 +23,10 @@ const styles = {
         height: 200,
         borderRadius: '50%',
         objectFit: 'cover',
+    },
+    spinner: {
+        textAlign: 'center',
+        margin: '20px auto',
     },
     invisibleSeperator: {
         border: 'none',

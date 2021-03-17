@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
-import TipButton from '../Shared/TipButton';
 
 // Material UI
 import {
@@ -12,11 +11,19 @@ import {
     DialogContent,
     CircularProgress,
 } from '@material-ui/core';
-import { Close as CloseIcon, UnfoldMore } from '@material-ui/icons';
+import {
+    Chat as ChatIcon,
+    Close as CloseIcon,
+    UnfoldMore,
+} from '@material-ui/icons';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getScreamById } from '../../redux/actions/scream.actions';
+
+// Components
+import LikeButton from './LikeButton';
+import TipButton from '../Shared/TipButton';
 
 export default function PopUp({ classes, screamId }) {
     const {
@@ -56,9 +63,11 @@ export default function PopUp({ classes, screamId }) {
                 </TipButton>
                 <DialogContent className={classes.content}>
                     {loading ? (
-                        <CircularProgress size={200} />
+                        <div className={classes.spinner}>
+                            <CircularProgress size={200} thickness={2} />
+                        </div>
                     ) : (
-                        <Grid container spacing={16}>
+                        <Grid container spacing={2}>
                             <Grid item sm={5}>
                                 <img
                                     src={userAvatar}
@@ -86,6 +95,12 @@ export default function PopUp({ classes, screamId }) {
                                 </Typography>
                                 <hr className={classes.invisibleSeperator} />
                                 <Typography variant='body1'>{body}</Typography>
+                                <LikeButton screamId={screamId} />
+                                <span>{likeCount} Likes</span>
+                                <TipButton tip='Comments'>
+                                    <ChatIcon color='primary' />
+                                </TipButton>
+                                <span>{commentCount} Comments</span>
                             </Grid>
                         </Grid>
                     )}

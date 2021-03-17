@@ -60,11 +60,7 @@ function Scream({ classes, scream }) {
                     <ChatIcon color='primary' />
                 </TipButton>
                 <span>{commentCount} Comments</span>
-                <PopUp
-                    classes={classes}
-                    screamId={screamId}
-                    userHandle={userHandle}
-                />
+                <PopUp classes={classes} screamId={screamId} />
             </CardContent>
         </Card>
     );
