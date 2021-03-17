@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Scream, Profile } from '../components';
+import { Profile, Scream, ScreamDialog } from '../components';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,7 +16,9 @@ export default function Home() {
             <Grid item sm={8} xs={12}>
                 {!loading ? (
                     allScreams.map(scream => (
-                        <Scream key={scream.screamId} scream={scream} />
+                        <Scream key={scream.screamId} scream={scream}>
+                            <ScreamDialog screamId={scream.screamId} />
+                        </Scream>
                     ))
                 ) : (
                     <p>Loading...</p>

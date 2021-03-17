@@ -1,8 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import styles from './styles';
 
 // Material UI
+import withStyles from '@material-ui/core/styles/withStyles';
 import {
     Grid,
     Typography,
@@ -21,11 +23,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getScreamById } from '../../redux/actions/scream.actions';
 
 // Components
-import LikeButton from './LikeButton';
 import Comments from './Comments';
+import LikeButton from '../Shared/LikeButton';
 import TipButton from '../Shared/TipButton';
 
-export default function PopUp({ classes, screamId }) {
+function ScreamDialog({ classes, screamId }) {
     const {
         body,
         userAvatar,
@@ -112,3 +114,4 @@ export default function PopUp({ classes, screamId }) {
         </Fragment>
     );
 }
+export default withStyles(styles)(ScreamDialog);

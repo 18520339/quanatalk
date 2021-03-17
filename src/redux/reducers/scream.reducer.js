@@ -18,7 +18,7 @@ export default function screamReducer(state = initialState, action) {
             );
             state.allScreams[index] = action.payload;
             if (state.scream.screamId === action.payload.screamId)
-                state.scream = action.payload;
+                state.scream.likeCount = action.payload.likeCount;
             return { ...state };
         case SET_SCREAMS:
             return { ...state, allScreams: action.payload, loading: false };

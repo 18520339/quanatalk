@@ -12,12 +12,11 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 // Components
-import PopUp from './PopUp';
-import LikeButton from './LikeButton';
 import DeleteButton from './DeleteButton';
+import LikeButton from '../Shared/LikeButton';
 import TipButton from '../Shared/TipButton';
 
-function Scream({ classes, scream }) {
+function Scream({ classes, scream, children }) {
     const {
         screamId,
         body,
@@ -60,7 +59,7 @@ function Scream({ classes, scream }) {
                     <ChatIcon color='primary' />
                 </TipButton>
                 <span>{commentCount} Comments</span>
-                <PopUp classes={classes} screamId={screamId} />
+                {children}
             </CardContent>
         </Card>
     );

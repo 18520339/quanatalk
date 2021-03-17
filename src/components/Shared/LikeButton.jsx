@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Favorite as FavoriteIcon, FavoriteBorder } from '@material-ui/icons';
-import TipButton from '../Shared/TipButton';
+import TipButton from './TipButton';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
