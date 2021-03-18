@@ -10,7 +10,7 @@ import { signOutUser, getMe } from './redux/actions/user.actions';
 import { SET_AUTHENTICATED } from './redux/constants';
 
 // Components
-import { Home, SignIn, SignUp } from './pages';
+import { Home, User, SignIn, SignUp } from './pages';
 import { NavBar, AuthRoute } from './components';
 
 export default function App() {
@@ -36,6 +36,12 @@ export default function App() {
                     <Route exact path='/' component={Home} />
                     <AuthRoute exact path='/signin' component={SignIn} />
                     <AuthRoute exact path='/signup' component={SignUp} />
+                    <Route exact path='/user/:handle' component={User} />
+                    <Route
+                        exact
+                        path='/user/:handle/scream/:screamId'
+                        component={User}
+                    />
                 </Switch>
             </div>
         </BrowserRouter>

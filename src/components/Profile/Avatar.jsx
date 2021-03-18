@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import TipButton from '../Shared/TipButton';
 
 // Redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { uploadAvatar } from '../../redux/actions/user.actions';
 
-export default function Avatar() {
-    const { avatarUrl } = useSelector(state => state.user.credentials);
+export default function Avatar({ isMe, avatarUrl }) {
     const dispatch = useDispatch();
-
     const onAvatarChange = event => {
         const image = event.target.files[0];
         const formData = new FormData();
@@ -27,15 +25,19 @@ export default function Avatar() {
                 src={avatarUrl}
                 alt='Profile avatar'
             />
-            <input
-                id='avatar-input'
-                type='file'
-                hidden='hidden'
-                onChange={onAvatarChange}
-            />
-            <TipButton tip='Change your avatar' onClick={onChooseImage}>
-                <EditIcon color='primary' />
-            </TipButton>
+            {isMe && (
+                <Fragment>
+                    <input
+                        id='avatar-input'
+                        type='file'
+                        hidden='hidden'
+                        onChange={onAvatarChange}
+                    />
+                    <TipButton tip='Change your avatar' onClick={onChooseImage}>
+                        <EditIcon color='primary' />
+                    </TipButton>
+                </Fragment>
+            )}
         </div>
     );
 }

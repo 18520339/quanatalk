@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {
+    SET_SCREAMS,
+    LOADING_SCREAMS,
     SET_UNAUTHENTICATED,
     SET_USER,
     LOADING_USER,
@@ -56,6 +58,14 @@ export const getMe = () => (dispatch, getState) => {
         .get('/user/me')
         .then(res => dispatch({ type: SET_USER, payload: res.data }))
         .catch(console.error);
+};
+
+export const getUserByHandle = userHandle => (dispatch, getState) => {
+    dispatch({ type: LOADING_SCREAMS });
+    axios
+        .get(`/user/${userHandle}`)
+        .then(res => dispatch({ type: SET_SCREAMS, payload: res.data.screams }))
+        .catch(() => dispatch({ type: SET_SCREAMS, payload: null }));
 };
 
 export const uploadAvatar = formData => (dispatch, getState) => {

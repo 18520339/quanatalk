@@ -37,13 +37,16 @@ export default function screamReducer(state = initialState, action) {
             state.allScreams.splice(deletedIndex, 1);
             return { ...state };
         case SUBMIT_COMMENT:
-            if (state.scream.screamId === action.payload.screamId)
-                state.scream.commentCount += 1;
+            const submittedIndex = state.allScreams.findIndex(
+                scream => scream.screamId === action.payload.screamId
+            );
+            state.allScreams[submittedIndex].commentCount += 1;
             return {
                 ...state,
                 scream: {
                     ...state.scream,
                     comments: [action.payload, ...state.scream.comments],
+                    commentCount: state.scream.commentCount + 1,
                 },
             };
         case LOADING_SCREAMS:

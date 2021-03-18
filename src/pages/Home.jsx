@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getScreams } from '../redux/actions/scream.actions';
 
 export default function Home() {
+    const { credentials } = useSelector(state => state.user);
     const { allScreams, loading } = useSelector(state => state.scream);
     const dispatch = useDispatch();
     useEffect(() => dispatch(getScreams()), [dispatch]);
@@ -25,7 +26,7 @@ export default function Home() {
                 )}
             </Grid>
             <Grid item sm={4} xs={12}>
-                <Profile />
+                <Profile profile={credentials} />
             </Grid>
         </Grid>
     );

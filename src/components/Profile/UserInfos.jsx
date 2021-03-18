@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
@@ -11,15 +10,13 @@ import {
     CalendarToday,
 } from '@material-ui/icons';
 
-export default function UserInfos() {
-    const { bio, website, location, createdAt, handle } = useSelector(
-        state => state.user.credentials
-    );
+export default function UserInfos({ profile }) {
+    const { bio, website, location, createdAt, handle } = profile;
     return (
         <div className='profile-infos'>
             <MuiLink
                 component={Link}
-                to={`/users/${handle}`}
+                to={`/user/${handle}`}
                 color='primary'
                 variant='h5'
             >

@@ -19,7 +19,7 @@ export const getScreams = () => (dispatch, getState) => {
     axios
         .get('/screams')
         .then(res => dispatch({ type: SET_SCREAMS, payload: res.data }))
-        .catch(err => dispatch({ type: SET_SCREAMS, payload: [] }));
+        .catch(() => dispatch({ type: SET_SCREAMS, payload: [] }));
 };
 
 export const getScreamById = screamId => (dispatch, getState) => {
