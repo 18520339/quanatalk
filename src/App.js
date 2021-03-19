@@ -14,6 +14,7 @@ import { Home, User, SignIn, SignUp } from './pages';
 import AuthRoute from './components/Shared/AuthRoute';
 import NavBar from './components/NavBar';
 
+axios.defaults.baseURL = `https://asia-southeast2-quanatalk.cloudfunctions.net/api`;
 export default function App() {
     const dispatch = useDispatch();
     const token = localStorage.QntToken;
