@@ -1,7 +1,4 @@
 const styles = {
-    form: {
-        textAlign: 'center',
-    },
     logo: {
         animation: '$logoSpin infinite 20s linear',
         margin: '10px auto',

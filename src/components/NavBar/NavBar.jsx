@@ -5,9 +5,10 @@ import styles from './styles';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
-import { Home as HomeIcon, Notifications } from '@material-ui/icons';
+import { Home as HomeIcon } from '@material-ui/icons';
 
 import PostButton from './PostButton';
+import NotificationButton from './NotificationButton';
 import TipButton from '../Shared/TipButton';
 
 function NavBar({ classes }) {
@@ -19,13 +20,11 @@ function NavBar({ classes }) {
                     <Fragment>
                         <PostButton classes={classes} />
                         <Link to='/'>
-                            <TipButton tip='Home'>
+                            <TipButton title='Home'>
                                 <HomeIcon />
                             </TipButton>
                         </Link>
-                        <TipButton tip='Notifications'>
-                            <Notifications />
-                        </TipButton>
+                        <NotificationButton />
                     </Fragment>
                 ) : (
                     <Fragment>

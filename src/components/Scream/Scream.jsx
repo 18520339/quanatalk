@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Typography, Card, CardMedia, CardContent } from '@material-ui/core';
 import ChatIcon from '@material-ui/icons/Chat';
 
-// DayJS
+// Day.js
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -35,7 +35,7 @@ function Scream({ classes, scream, children }) {
                 image={userAvatar}
                 title='Profile avatar'
             />
-            <CardContent className={classes.content}>
+            <CardContent style={{ paddingBottom: 20 }}>
                 <Typography
                     variant='h5'
                     component={Link}
@@ -55,7 +55,7 @@ function Scream({ classes, scream, children }) {
                 <Typography variant='body1'>{body}</Typography>
                 <LikeButton screamId={screamId} />
                 <span>{likeCount} Likes</span>
-                <TipButton tip='Comments'>
+                <TipButton title='Comments'>
                     <ChatIcon color='primary' />
                 </TipButton>
                 <span>{commentCount} Comments</span>

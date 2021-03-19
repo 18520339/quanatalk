@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Profile, Scream, ScreamDialog } from '../components';
+import { Profile, Scream, ScreamDialog, Skeleton } from '../components';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';

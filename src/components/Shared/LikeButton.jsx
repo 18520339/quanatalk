@@ -17,17 +17,17 @@ export default function LikeButton({ screamId }) {
     if (!authenticated)
         return (
             <Link to='/signin'>
-                <TipButton tip='Like'>
+                <TipButton title='Like'>
                     <FavoriteBorder color='primary' />
                 </TipButton>
             </Link>
         );
     return likes && likes.find(like => like.screamId === screamId) ? (
-        <TipButton tip='Unlike' onClick={onUnlike}>
+        <TipButton title='Unlike' onClick={onUnlike}>
             <FavoriteIcon color='primary' />
         </TipButton>
     ) : (
-        <TipButton tip='Like' onClick={onLike}>
+        <TipButton title='Like' onClick={onLike}>
             <FavoriteBorder color='primary' />
         </TipButton>
     );

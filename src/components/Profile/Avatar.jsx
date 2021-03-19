@@ -33,7 +33,10 @@ export default function Avatar({ isMe, avatarUrl }) {
                         hidden='hidden'
                         onChange={onAvatarChange}
                     />
-                    <TipButton tip='Change your avatar' onClick={onChooseImage}>
+                    <TipButton
+                        title='Change your avatar'
+                        onClick={onChooseImage}
+                    >
                         <EditIcon color='primary' />
                     </TipButton>
                 </Fragment>

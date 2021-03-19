@@ -49,19 +49,19 @@ export default function PostButton({ classes }) {
 
     return (
         <Fragment>
-            <TipButton tip='Post a Scream!' onClick={onOpen}>
+            <TipButton title='Post a Scream!' onClick={onOpen}>
                 <AddIcon />
             </TipButton>
             <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
                 <TipButton
-                    tip='Close'
+                    title='Close'
                     className={classes.closeButton}
                     onClick={onClose}
                 >
                     <CloseIcon />
                 </TipButton>
                 <DialogTitle>Post a new scream</DialogTitle>
-                <DialogContent className={classes.content}>
+                <DialogContent style={{ paddingBottom: 20 }}>
                     <form onSubmit={onSubmit}>
                         <TextField
                             name='body'

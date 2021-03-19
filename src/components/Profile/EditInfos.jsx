@@ -54,7 +54,7 @@ export default function EditInfos({ classes }) {
     return (
         <Fragment>
             <TipButton
-                tip='Edit infos'
+                title='Edit infos'
                 className={classes.editInfos}
                 onClick={onOpen}
             >

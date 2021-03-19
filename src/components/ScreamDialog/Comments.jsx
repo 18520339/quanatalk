@@ -20,7 +20,7 @@ export default function Comments({ classes, comments }) {
                                     />
                                 </Grid>
                                 <Grid item sm={9}>
-                                    <div className={classes.commentData}>
+                                    <div style={{ marginLeft: 35 }}>
                                         <Typography
                                             variant='h5'
                                             color='primary'

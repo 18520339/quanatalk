@@ -23,7 +23,7 @@ export default function DeleteButton({ classes, screamId, userHandle }) {
         userHandle === credentials.handle && (
             <Fragment>
                 <TipButton
-                    tip='Delete Scream'
+                    title='Delete Scream'
                     className={classes.deleteButton}
                     onClick={onOpen}
                 >

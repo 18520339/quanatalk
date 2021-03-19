@@ -5,6 +5,7 @@ import {
     SET_UNAUTHENTICATED,
     SET_USER,
     LOADING_USER,
+    MARK_NOTIFICATIONS_READ,
 } from '../constants';
 
 const initialState = {
@@ -43,6 +44,11 @@ export default function userReducer(state = initialState, action) {
                     like => like.screamId !== action.payload.screamId
                 ),
             };
+        case MARK_NOTIFICATIONS_READ:
+            state.notifications.forEach(
+                notification => (notification.read = true)
+            );
+            return { ...state };
         default:
             return state;
     }

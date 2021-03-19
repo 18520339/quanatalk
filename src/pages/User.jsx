@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import { Profile, Scream, ScreamDialog } from '../components';
+import { Profile, Scream, ScreamDialog, Skeleton } from '../components';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,14 +12,19 @@ export default function User({ match }) {
     const dispatch = useDispatch();
 
     const [profile, setProfile] = useState({});
+    const [screamParam, setScreamParam] = useState('');
+
     useEffect(() => {
         const handle = match.params.handle;
+        const screamId = match.params.screamId;
+        if (screamId) setScreamParam(screamId);
+
         dispatch(getUserByHandle(handle));
         axios
             .get(`/user/${handle}`)
             .then(res => setProfile(res.data.user))
             .catch(console.error);
-    }, [dispatch, match.params.handle]);
+    }, [dispatch, match.params]);
 
     return (
         <Grid container spacing={2}>
@@ -30,12 +35,15 @@ export default function User({ match }) {
                     ) : (
                         allScreams.map(scream => (
                             <Scream key={scream.screamId} scream={scream}>
-                                <ScreamDialog screamId={scream.screamId} />
+                                <ScreamDialog
+                                    screamId={scream.screamId}
+                                    openDialog={scream.screamId === screamParam}
+                                />
                             </Scream>
                         ))
                     )
                 ) : (
-                    <p>Loading...</p>
+                    <Skeleton />
                 )}
             </Grid>
             <Grid item sm={4} xs={12}>

@@ -13,8 +13,5 @@ const styles = {
         minWidth: 200,
         objectFit: 'cover',
     },
-    content: {
-        padding: 25,
-    },
 };
 export default styles;

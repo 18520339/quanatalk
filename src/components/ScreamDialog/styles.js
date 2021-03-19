@@ -1,4 +1,7 @@
 const styles = {
+    textField: {
+        margin: '10px auto',
+    },
     expandButton: {
         position: 'absolute',
         left: '90%',
@@ -14,16 +17,10 @@ const styles = {
         borderRadius: '50%',
         objectFit: 'cover',
     },
-    commentForm: {
-        textAlign: 'center',
-    },
     commentAvatar: {
         height: 100,
         borderRadius: '50%',
         objectFit: 'cover',
-    },
-    commentData: {
-        marginLeft: 35,
     },
     spinner: {
         textAlign: 'center',
@@ -37,12 +34,6 @@ const styles = {
     invisibleSep: {
         border: 'none',
         margin: 4,
-    },
-    textField: {
-        margin: '10px auto',
-    },
-    content: {
-        padding: 25,
     },
     submitButton: {
         marginTop: 20,

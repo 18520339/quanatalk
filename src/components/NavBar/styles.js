@@ -1,7 +1,4 @@
 const styles = {
-    content: {
-        paddingBottom: 20,
-    },
     textField: {
         margin: '10px auto',
     },

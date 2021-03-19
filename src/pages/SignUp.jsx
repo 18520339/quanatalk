@@ -37,7 +37,7 @@ function SignUp({ classes, history }) {
     };
 
     return (
-        <Grid container className={classes.form}>
+        <Grid container style={{ textAlign: 'center' }}>
             <Grid item sm></Grid>
             <Grid item sm>
                 <img

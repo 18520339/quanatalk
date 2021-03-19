@@ -44,7 +44,7 @@ function Profile({ classes, profile }) {
                 <UserInfos profile={userInfos} />
                 {isMe && (
                     <Fragment>
-                        <TipButton tip='Sign out' onClick={onSignOut}>
+                        <TipButton title='Sign out' onClick={onSignOut}>
                             <KeyboardReturn color='primary' />
                         </TipButton>
                         <EditInfos classes={classes} />

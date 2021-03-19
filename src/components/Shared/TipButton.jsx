@@ -1,10 +1,16 @@
 import React from 'react';
 import { Tooltip, IconButton } from '@material-ui/core';
 
-export default function TipButton({ tip, className, onClick, children }) {
+export default function TipButton({
+    title,
+    className,
+    onClick,
+    children,
+    ...rest
+}) {
     return (
-        <Tooltip title={tip} placement='top'>
-            <IconButton className={className} onClick={onClick}>
+        <Tooltip title={title} placement='top'>
+            <IconButton className={className} onClick={onClick} {...rest}>
                 {children}
             </IconButton>
         </Tooltip>

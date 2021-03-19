@@ -5,6 +5,7 @@ import {
     SET_UNAUTHENTICATED,
     SET_USER,
     LOADING_USER,
+    MARK_NOTIFICATIONS_READ,
     SET_ERRORS,
     CLEAR_ERRORS,
     LOADING_UI,
@@ -81,5 +82,12 @@ export const editUserInfos = userInfos => (dispatch, getState) => {
     axios
         .post('/user', userInfos)
         .then(() => dispatch(getMe()))
+        .catch(console.error);
+};
+
+export const markNotificationsRead = unReadIds => (dispatch, getState) => {
+    axios
+        .post('/notifications', unReadIds)
+        .then(() => dispatch({ type: MARK_NOTIFICATIONS_READ }))
         .catch(console.error);
 };

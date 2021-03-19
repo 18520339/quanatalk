@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, useCallback, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import styles from './styles';
@@ -29,7 +29,7 @@ import CommentForm from './CommentForm';
 import LikeButton from '../Shared/LikeButton';
 import TipButton from '../Shared/TipButton';
 
-function ScreamDialog({ classes, screamId }) {
+function ScreamDialog({ classes, screamId, openDialog }) {
     const {
         body,
         userAvatar,
@@ -43,19 +43,32 @@ function ScreamDialog({ classes, screamId }) {
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
-    const onOpen = () => {
-        setOpen(true);
+    const [path, setPath] = useState({ oldPath: '', newPath: '' });
+
+    const onOpen = useCallback(() => {
         dispatch(getScreamById(screamId));
-    };
+        if (userHandle) {
+            let oldPath = window.location.pathname;
+            let newPath = `/user/${userHandle}/scream/${screamId}`;
+
+            if (oldPath === newPath) oldPath = `/user/${userHandle}`;
+            window.history.pushState(null, null, newPath);
+            setPath({ oldPath, newPath });
+            setOpen(true);
+        }
+    }, [dispatch, screamId, userHandle]);
+
     const onClose = () => {
+        window.history.pushState(null, null, path.oldPath);
         setOpen(false);
         dispatch(clearErrors());
     };
+    useEffect(() => openDialog && onOpen(), [openDialog, onOpen]);
 
     return (
         <Fragment>
             <TipButton
-                tip='Expand scream'
+                title='Expand scream'
                 className={classes.expandButton}
                 onClick={onOpen}
             >
@@ -63,13 +76,13 @@ function ScreamDialog({ classes, screamId }) {
             </TipButton>
             <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
                 <TipButton
-                    tip='Close'
+                    title='Close'
                     className={classes.closeButton}
                     onClick={onClose}
                 >
                     <CloseIcon />
                 </TipButton>
-                <DialogContent className={classes.content}>
+                <DialogContent style={{ paddingBottom: 20 }}>
                     {loading ? (
                         <div className={classes.spinner}>
                             <CircularProgress size={200} thickness={2} />
@@ -105,7 +118,7 @@ function ScreamDialog({ classes, screamId }) {
                                 <Typography variant='body1'>{body}</Typography>
                                 <LikeButton screamId={screamId} />
                                 <span>{likeCount} Likes</span>
-                                <TipButton tip='Comments'>
+                                <TipButton title='Comments'>
                                     <ChatIcon color='primary' />
                                 </TipButton>
                                 <span>{commentCount} Comments</span>

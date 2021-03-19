@@ -28,7 +28,7 @@ export default function CommentForm({ classes, screamId }) {
 
     return (
         user.authenticated && (
-            <Grid item sm={12} className={classes.commentForm}>
+            <Grid item sm={12} style={{ textAlign: 'center' }}>
                 <form onSubmit={onSubmit}>
                     <TextField
                         name='body'
