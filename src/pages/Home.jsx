@@ -1,32 +1,39 @@
 import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Profile, Scream, ScreamDialog, Skeleton } from '../components';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getScreams } from '../redux/actions/scream.actions';
 
+// Components
+import ScreamDialog from '../components/ScreamDialog';
+import Scream, { ScreamSkeleton } from '../components/Scream';
+import Profile, { ProfileSkeleton } from '../components/Profile';
+
 export default function Home() {
-    const { credentials } = useSelector(state => state.user);
-    const { allScreams, loading } = useSelector(state => state.scream);
+    const { scream, user } = useSelector(state => state);
     const dispatch = useDispatch();
     useEffect(() => dispatch(getScreams()), [dispatch]);
 
     return (
         <Grid container spacing={2}>
             <Grid item sm={8} xs={12}>
-                {!loading ? (
-                    allScreams.map(scream => (
+                {scream.loading ? (
+                    <ScreamSkeleton />
+                ) : (
+                    scream.allScreams.map(scream => (
                         <Scream key={scream.screamId} scream={scream}>
                             <ScreamDialog screamId={scream.screamId} />
                         </Scream>
                     ))
-                ) : (
-                    <p>Loading...</p>
                 )}
             </Grid>
             <Grid item sm={4} xs={12}>
-                <Profile profile={credentials} />
+                {user.loading && scream.loading ? (
+                    <ProfileSkeleton />
+                ) : (
+                    <Profile profile={user.credentials} />
+                )}
             </Grid>
         </Grid>
     );

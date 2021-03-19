@@ -11,7 +11,8 @@ import { SET_AUTHENTICATED } from './redux/constants';
 
 // Components
 import { Home, User, SignIn, SignUp } from './pages';
-import { NavBar, AuthRoute } from './components';
+import AuthRoute from './components/Shared/AuthRoute';
+import NavBar from './components/NavBar';
 
 export default function App() {
     const dispatch = useDispatch();
